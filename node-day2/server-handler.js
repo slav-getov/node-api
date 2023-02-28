@@ -3,7 +3,7 @@ const serverHandlerFunction = (req,res) =>{
     const method = req.method
     if(url === '/'){
         res.write('<html>')
-        res.write('<body><p>hey there</p><form action="/create-user" method="POST"><label for="user">username creation</label><input type="text" name="user"><button type="submit">Post it</button></form></body>')
+        res.write('<body><p>hey there2</p><form action="/create-user" method="POST"><label for="user">username creation</label><input type="text" name="user"><button type="submit">Post it</button></form></body>')
         res.write('</html>')
         return res.end()
     }else if(url === '/users'){
