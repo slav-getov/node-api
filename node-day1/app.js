@@ -23,7 +23,7 @@ function rqListener(req, res){
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
         });
-        fs.writeFileSync('node-day1/resp5.txt', 'dummy');
+        fs.writeFileSync('node-day1/resp6.txt', 'dummy');
         res.statusCode = 302;
         res.setHeader('Location', '/');
         return res.end();
