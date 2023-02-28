@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon node-day2/app2.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   "homepage": "https://github.com/slav-getov/node-api#readme",
   "dependencies": {
     "@types/node": "^18.14.2",
+    "express": "^4.18.2",
     "node": "^19.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
