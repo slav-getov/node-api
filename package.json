@@ -20,6 +20,7 @@
   "homepage": "https://github.com/slav-getov/node-api#readme",
   "dependencies": {
     "@types/node": "^18.14.2",
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "node": "^19.6.1"
   },
