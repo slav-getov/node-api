@@ -1,7 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('../server.js')
 
-const Book = sequelize.define("books", {
+const Book = sequelize.define("book", {
+    id:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -10,17 +16,10 @@ const Book = sequelize.define("books", {
       type: DataTypes.STRING,
       allowNull: false
     },
-    release_date: {
-      type: DataTypes.DATEONLY,
-    },
     subject: {
       type: DataTypes.INTEGER,
     }
  });
 
- sequelize.sync().then(() => {
-    console.log('Book table created successfully!');
- }).catch((error) => {
-    console.error('Unable to create table : ', error);
- });
+ module.exports = Book;
  

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon node-day2/app2.js"
+    "start": "nodemon new-express-attempt/app.js"
   },
   "repository": {
     "type": "git",
