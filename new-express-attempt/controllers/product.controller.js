@@ -11,6 +11,7 @@ const getAllProducts = async (req,res)=>{
 }
 const getProductById = async (req,res)=>{
     console.log(req.params)
+    
     try {
         const productBasedOnId = await Product.findAll({
             where: {
@@ -21,7 +22,7 @@ const getProductById = async (req,res)=>{
         const result = productBasedOnId && productBasedOnId.length ? JSON.stringify(productBasedOnId, null, '<pre>') : '<p>empty</p>'
         res.send(result)
     } catch (error) {
-        console.log(err)
+        res.send('<p>No such id bro</p>')
     }
 }
 const createProduct = async (req,res)=>{
