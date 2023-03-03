@@ -11,7 +11,7 @@ app.use(express.json());
 // //does the order here matter?
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/products', products)
-
+app.use((req,res,next)=>res.send('<p>error</p>'))
 //do I need sequelize here
 sequelize.sync().then(result=>{
     //console.log(result)
