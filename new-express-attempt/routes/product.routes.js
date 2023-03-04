@@ -5,10 +5,11 @@ const router = express.Router()
 const {getAllProducts} = require('../controllers/product.controller.js')
 const {createProduct} = require('../controllers/product.controller.js')
 const {getProductById} = require('../controllers/product.controller.js')
-
+const {updateProductBasedOn} = require('../controllers/product.controller.js')
 //router.get('/', getAllProducts)
 router.get('/all',getAllProducts)
 router.get('/:productId', getProductById)
+router.patch('/update:id-:field-:newValue', updateProductBasedOn)
 router.post('/', createProduct)
 //^used to (req,res,next)=>{
     //console.log(req.body)

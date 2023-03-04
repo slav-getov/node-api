@@ -11,15 +11,17 @@ const getAllProducts = async (req,res)=>{
 }
 const getProductById = async (req,res)=>{
     console.log(req.params)
-    
+    // if(Number(req.params) == 'NaN'){
+    //     res.send('<p>no such id</p>')
+    // }
     try {
-        const productBasedOnId = await Product.findAll({
+        const productsBasedOnId = await Product.findAll({
             where: {
               id: req.params.productId
             }
           })
-        console.log(productBasedOnId + 'is now')
-        const result = productBasedOnId && productBasedOnId.length ? JSON.stringify(productBasedOnId, null, '<pre>') : '<p>empty</p>'
+        //console.log(productBasedOnId + 'is now')
+        const result = productsBasedOnId[0] && productsBasedOnId.length ? JSON.stringify(productsBasedOnId[0], null, '<pre>') : '<p>empty</p>'
         res.send(result)
     } catch (error) {
         res.send('<p>No such id bro</p>')
@@ -44,4 +46,25 @@ const createProduct = async (req,res)=>{
     }
 }
 
-module.exports = {getAllProducts, createProduct, getProductById}
+const updateProductBasedOn = async (req,res) =>{
+    const{id, field, newValue} = req.params
+    
+    const updateData = {"title": newValue}
+    //updateData[field] = newValue
+    console.log(id,field,newValue)
+    console.log(updateData)
+    
+    try {
+        const resultProd = await Product.update({updateData}, {
+            where: {
+                id: req.params.id
+            }
+        })
+        console.log('end')
+        res.send(resultProd)
+    } catch (error) {
+        res.send('<p>Error during update</p>')
+    }
+
+}
+module.exports = {getAllProducts, createProduct, getProductById, updateProductBasedOn}
