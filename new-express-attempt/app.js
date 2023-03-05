@@ -3,6 +3,9 @@ const sequelize = require('./server.js')
 const Product = require('./models/product.model.js')
 const Client = require('./models/client.model.js')
 const Supplier = require('./models/supplier.model.js')
+const Warehouse = require('./models/warehouse.model.js')
+const WarehouseProduct = require('./models/warehouseProduct.model.js')
+
 const bodyParser = require('body-parser')
 //some routes
 const products = require('./routes/product.routes.js')
@@ -18,7 +21,8 @@ app.use((req,res,next)=>res.send('<p>error</p>'))
 
 //lets set up our relations! Just before sync!
 Product.belongsTo(Supplier)
-
+Product.belongsToMany(Warehouse, {through: WarehouseProduct})
+Warehouse.belongsToMany(Product, {through: WarehouseProduct})
 //end of relations!
 sequelize.sync({force:true}).then(result=>{
     //console.log(result)
