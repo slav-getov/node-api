@@ -1,18 +1,20 @@
 const express = require('express')
 const sequelize = require('./server.js')
-const product = require('./models/product.model.js')
+const Product = require('./models/product.model.js')
+const Client = require('./models/client.model.js')
 const bodyParser = require('body-parser')
 //some routes
 const products = require('./routes/product.routes.js')
-//why have an empty import here??? 
+
 const app = express()
-//we add this because we just do, awesome idea
+
 app.use(express.json());
-// //does the order here matter?
+
 app.use(bodyParser.urlencoded({extended:false}));
+
 app.use('/products', products)
 app.use((req,res,next)=>res.send('<p>error</p>'))
-//do I need sequelize here
+
 sequelize.sync().then(result=>{
     //console.log(result)
     app.listen(3000)

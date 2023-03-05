@@ -2,7 +2,7 @@ const Product = require('../models/product.model.js')
 
 const getAllProducts = async (req,res)=>{
     try {
-        //res.send('<p>All products...</p>');
+        
         const products = await Product.findAll();
         res.send(JSON.stringify(products, null, '<pre>'));
     } catch (err) {
@@ -47,17 +47,12 @@ const createProduct = async (req,res)=>{
 }
 
 const updateProductBasedOn = async (req,res) =>{
-    const{id, field, newValue} = req.params
-    
-    const updateData = {"title": newValue}
-    //updateData[field] = newValue
-    console.log(id,field,newValue)
-    console.log(updateData)
+    const{id} = req.params
     
     try {
-        const resultProd = await Product.update({updateData}, {
+        const resultProd = await Product.update(req.body, {
             where: {
-                id: req.params.id
+                id: id
             }
         })
         console.log('end')
@@ -67,4 +62,14 @@ const updateProductBasedOn = async (req,res) =>{
     }
 
 }
-module.exports = {getAllProducts, createProduct, getProductById, updateProductBasedOn}
+
+const deleteProductById = async (req,res) =>{
+    const {id} = req.params
+    try {
+        const deleted = await Product.destroy({where:{id:id}})
+        .then(result=>res.send(`Item with id ${id} was deleted from the db!`))
+    } catch (error) {
+        
+    }
+}
+module.exports = {getAllProducts, createProduct, getProductById, updateProductBasedOn, deleteProductById}
