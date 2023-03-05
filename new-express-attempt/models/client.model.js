@@ -25,6 +25,10 @@ const Client = sequelize.define('client', {
     phone: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 

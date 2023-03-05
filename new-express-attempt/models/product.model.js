@@ -12,7 +12,10 @@ const Product = sequelize.define('product', {
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: [0,12]
+        }
     },
     description: {
         type: DataTypes.STRING,
