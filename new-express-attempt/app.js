@@ -1,18 +1,30 @@
 const express = require('express')
 const sequelize = require('./server.js')
-const product = require('./models/product.model.js')
+const Product = require('./models/product.model.js')
+const Client = require('./models/client.model.js')
+const Supplier = require('./models/supplier.model.js')
+const Warehouse = require('./models/warehouse.model.js')
+const WarehouseProduct = require('./models/warehouseProduct.model.js')
+
 const bodyParser = require('body-parser')
 //some routes
 const products = require('./routes/product.routes.js')
-//why have an empty import here??? 
+const users = require('./routes/user.routes.js')
 const app = express()
-//we add this because we just do, awesome idea
-app.use(express.json());
-// //does the order here matter?
-app.use(bodyParser.urlencoded({extended:false}));
-app.use('/products', products)
 
-//do I need sequelize here
+app.use(express.json());
+
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.use('/products', products)
+app.use('/users', users)
+app.use((req,res,next)=>res.send('<p>error</p>'))
+
+//lets set up our relations! Just before sync!
+Product.belongsTo(Supplier)
+Product.belongsToMany(Warehouse, {through: WarehouseProduct})
+Warehouse.belongsToMany(Product, {through: WarehouseProduct})
+//end of relations!
 sequelize.sync().then(result=>{
     //console.log(result)
     app.listen(3000)

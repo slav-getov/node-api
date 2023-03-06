@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 
 const sequelize = require('../server.js')
 
-const Product = sequelize.define('product', {
+const User = sequelize.define('user', {
 
     id:{
         type: DataTypes.INTEGER,
@@ -10,17 +10,23 @@ const Product = sequelize.define('product', {
         allowNull: false,
         primaryKey: true
     },
-    title: {
+    fullName: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [0,12]
-        }
+        allowNull: false
     },
-    description: {
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: true
+    },
+    role: {
         type: DataTypes.STRING,
         allowNull: false
     }
 })
 
-module.exports = Product;
+module.exports = User;

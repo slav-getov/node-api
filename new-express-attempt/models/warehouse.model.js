@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 
 const sequelize = require('../server.js')
 
-const Product = sequelize.define('product', {
+const Warehouse = sequelize.define('warehouse', {
 
     id:{
         type: DataTypes.INTEGER,
@@ -10,17 +10,22 @@ const Product = sequelize.define('product', {
         allowNull: false,
         primaryKey: true
     },
-    title: {
+    name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [0,12]
-        }
+        allowNull: false
     },
-    description: {
+    location: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    numberOfCrew: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    phone: {
         type: DataTypes.STRING,
         allowNull: false
     }
 })
 
-module.exports = Product;
+module.exports = Warehouse;
