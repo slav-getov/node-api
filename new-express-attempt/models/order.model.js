@@ -12,4 +12,4 @@ const Order = sequelize.define('order', {
     }
 })
 
-module.exports = Warehouse;
+module.exports = Order;

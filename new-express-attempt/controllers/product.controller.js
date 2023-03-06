@@ -11,10 +11,6 @@ const getAllProducts = async (req,res)=>{
     }
 }
 const getProductById = async (req,res)=>{
-    console.log(req.params)
-    // if(Number(req.params) == 'NaN'){
-    //     res.send('<p>no such id</p>')
-    // }
     try {
         const productsBasedOnId = await Product.findAll({
             where: {
@@ -68,7 +64,7 @@ const deleteProductById = async (req,res) =>{
         const deleted = await Product.destroy({where:{id:id}})
         .then(result=>res.send(`Item with id ${id} was deleted from the db!`))
     } catch (error) {
-        
+        res.send('<p>Error during deletion</p>')
     }
 }
 module.exports = {getAllProducts, createProduct, getProductById, updateProductBasedOn, deleteProductById}
