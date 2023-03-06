@@ -14,8 +14,8 @@ router.get('/:productId', getProductById)
 
 
 router.put('/update-:id', updateProductBasedOn)
-router.post('/', productValidationRules(), validate, createProduct)
-//verifyAuth was here ^
+router.post('/', verifyAuth, productValidationRules(), validate, createProduct)
+
 router.delete('/delete-:id', deleteProductById)
 
 module.exports = router

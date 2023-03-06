@@ -5,7 +5,7 @@ const getAllProducts = async (req,res)=>{
     try {
         
         const products = await Product.findAll();
-        res.send(JSON.stringify(products, null, '<pre>'));
+        res.json(products);
     } catch (err) {
         console.log(err);
     }
@@ -53,6 +53,7 @@ const updateProductBasedOn = async (req,res) =>{
         console.log('end')
         res.send(resultProd)
     } catch (error) {
+        console.log(error)
         res.send('<p>Error during update</p>')
     }
 

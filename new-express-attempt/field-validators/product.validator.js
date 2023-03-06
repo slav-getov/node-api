@@ -7,6 +7,7 @@ const productValidationRules = () => {
     body('description')
     .isString()
     .withMessage('Type must be string')
+    .isLength({min: 5})
   ]
 }
 
