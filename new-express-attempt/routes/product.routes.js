@@ -7,10 +7,11 @@ const verifyAuth = require('../helpers/verifyAuth.js')
 
 
 router.get('/all',getAllProducts)
-router.get('/:productId', getProductById)
-router.get('/f1', (req,res,next)=>{
+router.get('/f1', verifyAuth,(req,res,next)=>{
     res.send('<p>Test</p>')
 })
+router.get('/:productId', getProductById)
+
 
 router.put('/update-:id', updateProductBasedOn)
 router.post('/',verifyAuth, userValidationRules(), validate, createProduct)
