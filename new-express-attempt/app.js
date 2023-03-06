@@ -1,5 +1,6 @@
 const express = require('express')
 const sequelize = require('./server.js')
+
 const Product = require('./models/product.model.js')
 const Client = require('./models/client.model.js')
 const Supplier = require('./models/supplier.model.js')
@@ -30,7 +31,7 @@ Client.belongsTo(Order)
 Product.belongsToMany(Warehouse, {through: WarehouseProduct})
 Warehouse.belongsToMany(Product, {through: WarehouseProduct})
 //end of relations!
-sequelize.sync().then(result=>{
+sequelize.sync({force: true}).then(result=>{
     //console.log(result)
     app.listen(3000)
 }).catch(err=>console.log(err))

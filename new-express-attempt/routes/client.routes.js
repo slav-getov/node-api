@@ -11,7 +11,7 @@ router.get('/all',getAllClients)
 router.get('/:clientd', getClientById)
 
 router.put('/update-:id', updateClientBasedOn)
-router.post('/',verifyAuth, clientValidationRules(), validate, createClient)
-router.delete('/delete-:id', deleteClientById)
+router.post('/',clientValidationRules(), validate, createClient)
+router.delete('/delete-:id', verifyAuth, deleteClientById)
 
 module.exports = router

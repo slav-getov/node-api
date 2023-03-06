@@ -13,12 +13,12 @@ const getAllClients = async (req,res)=>{
 const getClientById = async (req,res)=>{
    
     try {
-        const clientsBasedOnId = await Product.findAll({
+        const clientsBasedOnId = await Client.findAll({
             where: {
-              id: req.params.productId
+              id: req.params.clientId
             }
           })
-        //console.log(productBasedOnId + 'is now')
+        
         const result = clientsBasedOnId[0] && clientsBasedOnId.length ? JSON.stringify(clientsBasedOnId[0], null, '<pre>') : '<p>empty</p>'
         res.send(result)
     } catch (error) {
@@ -48,7 +48,7 @@ const updateClientBasedOn = async (req,res) =>{
     const{id} = req.params
     
     try {
-        const result = await Product.update(req.body, {
+        const result = await Client.update(req.body, {
             where: {
                 id: id
             }
