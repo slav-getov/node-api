@@ -1,14 +1,15 @@
 const User = require('../models/user.model.js')
 const { body, validationResult } = require('express-validator');
 
-const getAllUsers = async (req,res)=>{
+const login = async (req,res)=>{
     try {
-        
-        const users = await User.findAll();
-        res.send(JSON.stringify(users, null, '<pre>'));
+        const {id} = req.params
+        const user = await User.findByPk(id);
+        console.log(user.password)
+        res.send(JSON.stringify(user, null, '<pre>'));
     } catch (err) {
         console.log(err);
     }
 }
 
-module.exports = {getAllUsers}
+module.exports = {login}
