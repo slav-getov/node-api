@@ -1,12 +1,17 @@
 const { body, validationResult } = require('express-validator')
-const productValidationRules = () => {
+const userValidationRules = () => {
   return [
-    body('title')
-    .isLength({ min: 5 })
-    .withMessage('length must be more than 5'),
-    body('description')
+    body('fullName')
+    .isLength({ min: 10 })
+    .withMessage('Length must be more than 5')
     .isString()
-    .withMessage('Type must be string')
+    .withMessage('Full Name must be of type string'),
+    body('email')
+    .isEmail()
+    .withMessage('Must be a valid email'),
+    body('role')
+    .isIn(['ADMIN', 'WRITE', 'READ'])
+    .withMessage('Only three roles in uppercase are permitted - ADMIN, WRITE, READ')
   ]
 }
 
@@ -24,6 +29,6 @@ const validate = (req, res, next) => {
 }
 
 module.exports = {
-  productValidationRules,
+  userValidationRules,
   validate,
 }

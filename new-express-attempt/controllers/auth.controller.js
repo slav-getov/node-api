@@ -23,7 +23,7 @@ const login = async (req,res)=>{
         console.log(process.env.ACCESS_TOKEN_SECRET)
         if(match){
             const accessT = jwt.sign(
-                {"email": user.email},
+                {"id": user.id, "email": user.email, "role": user.role},
                 process.env.ACCESS_TOKEN_SECRET,
                 {expiresIn: '10m'}
             )
