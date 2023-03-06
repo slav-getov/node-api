@@ -7,14 +7,15 @@ const verifyAuth = require('../helpers/verifyAuth.js')
 
 
 router.get('/all',getAllProducts)
-router.get('/f1', verifyAuth,(req,res,next)=>{
-    res.send('<p>Test</p>')
-})
+// router.get('/f1', verifyAuth,(req,res,next)=>{
+//     res.send('<p>Test</p>')
+// })
 router.get('/:productId', getProductById)
 
 
 router.put('/update-:id', updateProductBasedOn)
-router.post('/',verifyAuth, productValidationRules(), validate, createProduct)
+router.post('/', productValidationRules(), validate, createProduct)
+//verifyAuth was here ^
 router.delete('/delete-:id', deleteProductById)
 
 module.exports = router

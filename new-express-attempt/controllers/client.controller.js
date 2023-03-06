@@ -22,7 +22,7 @@ const getClientById = async (req,res)=>{
         const result = clientsBasedOnId[0] && clientsBasedOnId.length ? JSON.stringify(clientsBasedOnId[0], null, '<pre>') : '<p>empty</p>'
         res.send(result)
     } catch (error) {
-        res.send('<p>No such id bro</p>')
+        res.send('<p>No client with such id</p>')
     }
 }
 const createClient = async (req,res)=>{
@@ -40,7 +40,7 @@ const createClient = async (req,res)=>{
             "message": "Client Created"
         });
     } catch (err) {
-        console.log(err);
+        res.send('<p>Client could not be created</p>')
     }
 }
 

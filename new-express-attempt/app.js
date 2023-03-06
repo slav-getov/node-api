@@ -31,7 +31,7 @@ Client.belongsTo(Order)
 Product.belongsToMany(Warehouse, {through: WarehouseProduct})
 Warehouse.belongsToMany(Product, {through: WarehouseProduct})
 //end of relations!
-sequelize.sync({force: true}).then(result=>{
+sequelize.sync().then(result=>{
     //console.log(result)
     app.listen(3000)
 }).catch(err=>console.log(err))
