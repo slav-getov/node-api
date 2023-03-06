@@ -12,15 +12,17 @@ const login = async (req,res)=>{
         console.log(req.body)
         const {id} = req.params
         const {password} = req.body
+        //generate salt for the comparison 
         const salt = await bcrypt.genSalt(15);
         const user = await User.findByPk(id);
         if(!password || !user) return res.status(400).json({message: "id and pass required!"})
-        console.log(password == user.password)
+        
+        //is password not hashed bcrypt will always return false no matter what even with literal string comparison
+
+        //has first with the salt and then compare
         let hashed = await bcrypt.hash(user.password, salt);
         const match = await bcrypt.compare(password, hashed)
-        console.log(`"${password}" and ours is "${String(user.password).trim()}"`)
-        console.log(match)
-        console.log(process.env.ACCESS_TOKEN_SECRET)
+        
         if(match){
             const accessT = jwt.sign(
                 {"id": user.id, "email": user.email, "role": user.role},
